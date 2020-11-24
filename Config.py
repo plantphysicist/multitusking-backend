@@ -9,3 +9,9 @@ class Game:
     """
     DEFAULT_PLAYER_MASS = 10
     FOOD_MASS = 1
+    FOOD_UNIFORM_DISPOSITION = True
+
+class Virus:
+    """[summary]
+    """
+    

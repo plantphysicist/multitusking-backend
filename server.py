@@ -2,32 +2,54 @@
 
 from Config import Comm, Game
 import game_logic as util
-
-# TODO: Solve this quadtree nonesense
-tree = None # quadtree(0, 0, c.gameWidth, c.gameHeight);
-
-# TODO: How do collision ;-;
-SAT = None # require('sat');
-
-users = [];
-massFood = [];
-food = [];
-virus = [];
-sockets = {};
-
-# TODO i cri
-V = None #SAT.Vector;
-C = None #SAT.Circle;
+import time
+import random
 
 # TODO JS does SQL & HTML stuff here
 
-def add_food(to_add):
-    """[summary]
+# TODO needs a name
+class NeedsName:
+    def __init__(self):
+        self.users = []
+        self.massFood = []
+        self.food = []
+        self.virus = []
+        self.sockets = {}
+        # TODO: Solve this quadtree nonesense
+        self.tree = None # quadtree(0, 0, c.gameWidth, c.gameHeight);
 
-    Args:
-        to_add ([type]): [description]
-    """
-    radius = util.mass_to_radius(Game.FOOD_MASS)
+        # TODO: How do collision ;-;
+        self.sat = None # require('sat');
 
-    for i in range(to_add):
-        position = 
+        # TODO i cri
+        self.V = None #SAT.Vector;
+        self.C = None #SAT.Circle;
+
+    def add_food(self, to_add):
+        """[summary]
+
+        Args:
+            to_add ([type]): [description]
+        """
+        radius = util.mass_to_radius(Game.FOOD_MASS)
+
+        for _ in range(to_add):
+            if Game.FOOD_UNIFORM_DISPOSITION:
+                position = util.uniform_position(self.food, radius)
+            else:
+                position = util.random_position(radius)
+
+            self.food.append(
+                {
+                    'id': int('{}{}'.format(time.time_ns(), len(self.food))),
+                    'x': position['x'],
+                    'y': position['y'],
+                    'radius': radius,
+                    'mass': random.random() + 2,
+                    'hue': round(random.random() * 360)
+                }
+            )
+
+    def add_virus(to_add):
+        for _ in range(to_add):
+            mass = util.random_in_range()
