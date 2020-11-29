@@ -1,7 +1,7 @@
 # game_logic.py
 
 import re
-
+import math
 
 def mass_to_radius(mass):
     """[summary]
@@ -67,3 +67,12 @@ def random_position(radius):
         'x': random_in_range(radius, cfg.gameWidth - radius),
         'y': random_in_range(radius, cfg.gameHeight - radius)
     }
+
+# overwrite Math.log function
+def log(n, base = 0):
+    try:
+        ret = math.log(n) / math.log(base)
+    except ValueError:
+        ret = math.log(n)
+    
+    return ret
