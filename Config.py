@@ -13,6 +13,8 @@ class Game:
     VIRUS_UNIFORM_DISPOSITION = True
     SLOW_BASE = 4.5
     MERGE_TIMER = 15
+    GAME_WIDTH = 5000
+    GAME_HEIGHT = 5000
 
 class Virus:
     """[summary]
